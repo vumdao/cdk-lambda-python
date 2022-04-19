@@ -1,15 +1,27 @@
-import { App, Stack, StackProps } from 'aws-cdk-lib';
+import { App, CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { join } from 'path';
 
-export class MyStack extends Stack {
+function getRandomInt() {
+  const maxNumber = 1000;
+  return Math.floor(Math.random() * maxNumber);
+}
+
+export class LambdaTemplateFunction extends Stack {
   constructor(scope: Construct, id: string, props: StackProps = {}) {
     super(scope, id, props);
 
-    // define resources here...
+    const myLambda = new PythonFunction(this, 'MyFunction', {
+      entry: join(__dirname, 'lambda-handler'),
+      runtime: Runtime.PYTHON_3_9,
+    });
+
+    new CfnOutput(this, `MyFunctionOutput`, {value: myLambda.functionArn})
   }
 }
 
-// for development, use account/region from cdk cli
 const devEnv = {
   account: process.env.CDK_DEFAULT_ACCOUNT,
   region: process.env.CDK_DEFAULT_REGION,
@@ -17,7 +29,6 @@ const devEnv = {
 
 const app = new App();
 
-new MyStack(app, 'my-stack-dev', { env: devEnv });
-// new MyStack(app, 'my-stack-prod', { env: prodEnv });
+new LambdaTemplateFunction(app, `myLambdaTemplate${getRandomInt()}`, { env: devEnv });
 
 app.synth();
