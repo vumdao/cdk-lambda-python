@@ -39,23 +39,23 @@ Step 8/8 : CMD [ "python" ]
  ---> 8905c3295220
 Successfully built 8905c3295220
 Successfully tagged cdk-f65e0a7f70b51c1e23b70300445598469a136f74a765801a3f2b6e14509c3443:latest
-Bundling asset myLambdaTemplate984/MyFunction/Code/Stage...
+Bundling asset myLambdaTemplate/MyFunction/Code/Stage...
 WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
 WARNING: You are using pip version 21.3.1; however, version 22.0.4 is available.
 You should consider upgrading via the '/var/lang/bin/python -m pip install --upgrade pip' command.
 
 ✨  Synthesis time: 7.86s
 
-myLambdaTemplate984: creating CloudFormation changeset...
+myLambdaTemplate: creating CloudFormation changeset...
 
- ✅  myLambdaTemplate984
+ ✅  myLambdaTemplate
 
 ✨  Deployment time: 56.33s
 
 Outputs:
-myLambdaTemplate984.MyFunctionOutput = arn:aws:lambda:us-west-2:123456789012:function:myLambdaTemplate984-MyFunction3BAA72D1-wvVQheT0CKtm
+myLambdaTemplate.MyFunctionOutput = arn:aws:lambda:us-west-2:123456789012:function:myLambdaTemplate-MyFunction3BAA72D1-wvVQheT0CKtm
 Stack ARN:
-arn:aws:cloudformation:us-west-2:123456789012:stack/myLambdaTemplate984/c2a29fc0-bf96-11ec-be0f-06cbb1c6f329
+arn:aws:cloudformation:us-west-2:123456789012:stack/myLambdaTemplate/c2a29fc0-bf96-11ec-be0f-06cbb1c6f329
 
 ✨  Total time: 64.19s
 ```
@@ -65,10 +65,12 @@ arn:aws:cloudformation:us-west-2:123456789012:stack/myLambdaTemplate984/c2a29fc0
 - Destroy
   ```
   ⚡ $ cdk destroy -f --profile mfa
-    myLambdaTemplate189: destroying...
+    myLambdaTemplate: destroying...
 
-    ✅  myLambdaTemplate189: destroyed
+    ✅  myLambdaTemplate: destroyed
   ```
+
+- Note that to create other lambdafunction need to update the stack ID `myLambdaTemplate` to a unique name in the cloudformantion stacks
 
 ---
 

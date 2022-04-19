@@ -4,11 +4,6 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { join } from 'path';
 
-function getRandomInt() {
-  const maxNumber = 1000;
-  return Math.floor(Math.random() * maxNumber);
-}
-
 export class LambdaTemplateFunction extends Stack {
   constructor(scope: Construct, id: string, props: StackProps = {}) {
     super(scope, id, props);
@@ -29,6 +24,6 @@ const devEnv = {
 
 const app = new App();
 
-new LambdaTemplateFunction(app, `myLambdaTemplate${getRandomInt()}`, { env: devEnv });
+new LambdaTemplateFunction(app, `myLambdaTemplate`, { env: devEnv });
 
 app.synth();
